@@ -1,98 +1,107 @@
-import * as Device from 'expo-device';
-import { Platform, StyleSheet } from 'react-native';
-import { SafeAreaView } from 'react-native-safe-area-context';
-
-import { AnimatedIcon } from '@/components/animated-icon';
-import { HintRow } from '@/components/hint-row';
-import { ThemedText } from '@/components/themed-text';
-import { ThemedView } from '@/components/themed-view';
-import { WebBadge } from '@/components/web-badge';
-import { BottomTabInset, MaxContentWidth, Spacing } from '@/constants/theme';
-
-function getDevMenuHint() {
-  if (Platform.OS === 'web') {
-    return <ThemedText type="small">use browser devtools</ThemedText>;
-  }
-  if (Device.isDevice) {
-    return (
-      <ThemedText type="small">
-        shake device or press <ThemedText type="code">m</ThemedText> in terminal
-      </ThemedText>
-    );
-  }
-  const shortcut = Platform.OS === 'android' ? 'cmd+m (or ctrl+m)' : 'cmd+d';
-  return (
-    <ThemedText type="small">
-      press <ThemedText type="code">{shortcut}</ThemedText>
-    </ThemedText>
-  );
-}
+import { StyleSheet, Text, TouchableOpacity, View } from 'react-native';
 
 export default function HomeScreen() {
   return (
-    <ThemedView style={styles.container}>
-      <SafeAreaView style={styles.safeArea}>
-        <ThemedView style={styles.heroSection}>
-          <AnimatedIcon />
-          <ThemedText type="title" style={styles.title}>
-            Welcome to&nbsp;Expo
-          </ThemedText>
-        </ThemedView>
+    <View style={styles.container}>
+      <Text style={styles.emoji}>🍽️</Text>
 
-        <ThemedText type="code" style={styles.code}>
-          get started
-        </ThemedText>
+      <Text style={styles.title}>My Restaurant</Text>
 
-        <ThemedView type="backgroundElement" style={styles.stepContainer}>
-          <HintRow
-            title="Try editing"
-            hint={<ThemedText type="code">src/app/index.tsx</ThemedText>}
-          />
-          <HintRow title="Dev tools" hint={getDevMenuHint()} />
-          <HintRow
-            title="Fresh start"
-            hint={<ThemedText type="code">npm run reset-project</ThemedText>}
-          />
-        </ThemedView>
+      <Text style={styles.subtitle}>
+        Delicious food, made for you.
+      </Text>
 
-        {Platform.OS === 'web' && <WebBadge />}
-      </SafeAreaView>
-    </ThemedView>
+      <TouchableOpacity style={styles.button}>
+        <Text style={styles.buttonText}>Explore Menu</Text>
+      </TouchableOpacity>
+
+      <Text style={styles.sectionTitle}>Popular Today</Text>
+
+      <View style={styles.foodRow}>
+        <View style={styles.foodCard}>
+          <Text style={styles.foodEmoji}>🍕</Text>
+          <Text style={styles.foodName}>Pizza</Text>
+        </View>
+
+        <View style={styles.foodCard}>
+          <Text style={styles.foodEmoji}>🍔</Text>
+          <Text style={styles.foodName}>Burger</Text>
+        </View>
+
+        <View style={styles.foodCard}>
+          <Text style={styles.foodEmoji}>🍝</Text>
+          <Text style={styles.foodName}>Pasta</Text>
+        </View>
+      </View>
+    </View>
   );
 }
 
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    justifyContent: 'center',
-    flexDirection: 'row',
+    backgroundColor: '#fff',
+    padding: 24,
+    paddingTop: 80,
   },
-  safeArea: {
-    flex: 1,
-    paddingHorizontal: Spacing.four,
-    alignItems: 'center',
-    gap: Spacing.three,
-    paddingBottom: BottomTabInset + Spacing.three,
-    maxWidth: MaxContentWidth,
+
+  emoji: {
+    fontSize: 50,
+    marginBottom: 15,
   },
-  heroSection: {
-    alignItems: 'center',
-    justifyContent: 'center',
-    flex: 1,
-    paddingHorizontal: Spacing.four,
-    gap: Spacing.four,
-  },
+
   title: {
-    textAlign: 'center',
+    fontSize: 34,
+    fontWeight: 'bold',
+    marginBottom: 8,
   },
-  code: {
-    textTransform: 'uppercase',
+
+  subtitle: {
+    fontSize: 18,
+    color: '#666',
+    marginBottom: 30,
   },
-  stepContainer: {
-    gap: Spacing.three,
-    alignSelf: 'stretch',
-    paddingHorizontal: Spacing.three,
-    paddingVertical: Spacing.four,
-    borderRadius: Spacing.four,
+
+  button: {
+    backgroundColor: '#000',
+    paddingVertical: 16,
+    borderRadius: 12,
+    alignItems: 'center',
+    marginBottom: 40,
+  },
+
+  buttonText: {
+    color: '#fff',
+    fontSize: 17,
+    fontWeight: 'bold',
+  },
+
+  sectionTitle: {
+    fontSize: 24,
+    fontWeight: 'bold',
+    marginBottom: 20,
+  },
+
+  foodRow: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+  },
+
+  foodCard: {
+    width: '31%',
+    padding: 15,
+    backgroundColor: '#f5f5f5',
+    borderRadius: 15,
+    alignItems: 'center',
+  },
+
+  foodEmoji: {
+    fontSize: 35,
+    marginBottom: 8,
+  },
+
+  foodName: {
+    fontSize: 15,
+    fontWeight: '600',
   },
 });
