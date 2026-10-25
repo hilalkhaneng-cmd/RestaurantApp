@@ -77,7 +77,7 @@ cd ..
 Verify `server/.env`:
 ```env
 PORT=5050
-JWT_SECRET=rA8fP2mK9xQzLnVjTwYc5sBhE3uDgNiR7oUdX6pWvZ4aGyJeCqk
+JWT_SECRET=replace_with_a_long_random_secret
 ```
 
 ---

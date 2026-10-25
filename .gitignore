@@ -49,3 +49,7 @@ example
 server/node_modules/
 # Firebase private credentials
 server/firebase-service-account.json
+
+# Local SDK compatibility backup
+node_modules-sdk57-hold/
+package-lock-sdk57-hold.json
