@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>SRS v2.0 - RestaurantApp (Firebase Only)</title>
+  <style>
+    body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif; line-height: 1.6; color: #24292e; max-width: 900px; margin: 40px auto; padding: 0 20px; }
+    h1, h2, h3 { color: #111; border-bottom: 1px solid #eaecef; padding-bottom: 0.3em; }
+    h1 { font-size: 2.2em; border-bottom: 2px solid #222; }
+    table { border-collapse: collapse; width: 100%; margin: 20px 0; }
+    th, td { border: 1px solid #dfe2e5; padding: 10px 14px; text-align: left; }
+    th { background-color: #f6f8fa; font-weight: 600; }
+    tr:nth-child(even) { background-color: #fafbfc; }
+    code { background: #f6f8fa; padding: 2px 6px; border-radius: 4px; font-size: 88%; font-family: monospace; }
+    .badge { display: inline-block; padding: 4px 10px; border-radius: 12px; font-size: 12px; font-weight: bold; background: #28a745; color: white; }
+    .meta-box { background: #f1f8ff; border-left: 4px solid #0366d6; padding: 16px; margin: 20px 0; border-radius: 4px; }
+    @media print { body { margin: 20px; font-size: 12pt; } h1 { page-break-before: always; } h1:first-of-type { page-break-before: avoid; } }
+  </style>
+</head>
+<body>
+
+<h1>Software Requirements Specification (SRS v2.0)</h1>
+<h2>RestaurantApp — Food Ordering & Table Reservation System</h2>
+
+<div class="meta-box">
+  <strong>Project:</strong> RestaurantApp &bull; <strong>Version:</strong> 2.0 (Final Submission — Firebase Only)<br>
+  <strong>Target Platforms:</strong> iOS & Android (Expo Router / React Native)<br>
+  <strong>Backend:</strong> Node.js / Express REST API (Port 5050)<br>
+  <strong>Database Engine:</strong> Google Firebase Firestore
+</div>
+
+<h2>1. Scope Changes & Architecture</h2>
+<p>
+All MongoDB and Mongoose dependencies have been removed. The backend runs solely on <strong>Firebase Firestore</strong> using the <strong>Firebase Admin SDK</strong>. The backend port has been updated to <strong>Port 5050</strong>.
+</p>
+
+<h2>2. Glossary of Terms</h2>
+<ol>
+  <li><strong>RBAC (Role-Based Access Control):</strong> Security architecture restricting managerial operations to authorized accounts.</li>
+  <li><strong>JWT (JSON Web Token):</strong> Signed cryptographic token carrying user claims with a 1-day expiration.</li>
+  <li><strong>Bcrypt:</strong> Password hashing function applied with 12 salt rounds before storage in Firestore.</li>
+  <li><strong>Idempotency:</strong> Safe repeated script execution without duplicating Firestore records.</li>
+  <li><strong>NoSQL Document Collection:</strong> Schema structure grouping documents into collections (<code>users</code>, <code>menuItems</code>, <code>tables</code>, <code>orders</code>, <code>reservations</code>).</li>
+  <li><strong>Dining Slot Window:</strong> A 90-minute time window used to detect overlapping reservation conflicts on the same table.</li>
+</ol>
+
+<h2>3. Verification & Automated Test Results</h2>
+<p>
+The backend features an automated Jest test suite (<code>server/tests/api.test.js</code>) verifying all 32 endpoints and business rules:
+</p>
+<div class="meta-box" style="background:#e6ffed; border-color:#28a745;">
+  <strong>Automated Test Status:</strong> <span class="badge">PASS (32/32 Tests Passing)</span> &bull; <strong>Frontend Typecheck:</strong> 0 errors (<code>npx tsc --noEmit</code>)
+</div>
+
+<p><em>To save as PDF: Open this file in Safari or Chrome and select <strong>File &gt; Print &gt; Save as PDF</strong>.</em></p>
+
+</body>
+</html>

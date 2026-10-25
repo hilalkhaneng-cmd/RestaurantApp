@@ -1,32 +1,17 @@
-import { Tabs } from 'expo-router';
+
+import { Stack } from 'expo-router';
+import { AuthProvider } from '../context/AuthContext';
 import { CartProvider } from '../context/CartContext';
 
-export default function Layout() {
+export default function RootLayout() {
   return (
-    <CartProvider>
-      <Tabs
-        screenOptions={{
-          headerShown: false,
-        }}
-      >
-        <Tabs.Screen
-          name="index"
-          options={{
-            title: 'Home',
-            tabBarLabel: 'Home',
-            tabBarIcon: () => '🏠',
-          }}
-        />
-
-        <Tabs.Screen
-          name="explore"
-          options={{
-            title: 'Menu',
-            tabBarLabel: 'Menu',
-            tabBarIcon: () => '🍔',
-          }}
-        />
-      </Tabs>
-    </CartProvider>
+    <AuthProvider>
+      <CartProvider>
+        <Stack screenOptions={{ headerShown: false }}>
+          <Stack.Screen name="(tabs)" />
+          <Stack.Screen name="(auth)" />
+        </Stack>
+      </CartProvider>
+    </AuthProvider>
   );
 }

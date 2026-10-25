@@ -41,3 +41,11 @@ example
 # generated native folders
 /ios
 /android
+
+# A2 backend secrets
+.env
+.env.*
+!.env.example
+server/node_modules/
+# Firebase private credentials
+server/firebase-service-account.json

@@ -10,17 +10,21 @@
     "ios": {
       "icon": "./assets/expo.icon"
     },
-    "android": {
-      "adaptiveIcon": {
-        "backgroundColor": "#E6F4FE",
-        "foregroundImage": "./assets/images/android-icon-foreground.png",
-        "backgroundImage": "./assets/images/android-icon-background.png",
-        "monochromeImage": "./assets/images/android-icon-monochrome.png"
-      },
-      "predictiveBackGestureEnabled": false
-    },
-    "web": {
-      "output": "static",
+    
+"android": {
+  "usesCleartextTraffic": true,
+  "adaptiveIcon": {
+    "backgroundColor": "#E6F4FE",
+    "foregroundImage": "./assets/images/android-icon-foreground.png",
+    "backgroundImage": "./assets/images/android-icon-background.png",
+    "monochromeImage": "./assets/images/android-icon-monochrome.png"
+  },
+  "predictiveBackGestureEnabled": false,
+  "package": "com.hilalkhan5.RestaurantApp"
+},
+"web": {
+  "output": "static",
+
       "favicon": "./assets/images/favicon.png"
     },
     "plugins": [
@@ -37,6 +41,13 @@
     "experiments": {
       "typedRoutes": true,
       "reactCompiler": true
-    }
+    },
+    "extra": {
+      "router": {},
+      "eas": {
+        "projectId": "e8657dda-4ba7-4168-8097-8c9e0ebd8e0e"
+      }
+    },
+    "owner": "hilalkhan5"
   }
 }
